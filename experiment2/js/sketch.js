@@ -14,6 +14,8 @@ const VALUE2 = 2;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
+var tileCount = 20;
+var actRandomSeed = 0;
 
 class MyClass {
     constructor(param1, param2) {
@@ -38,6 +40,8 @@ function resizeScreen() {
 function setup() {
   // place our canvas, making it fit our container
   canvasContainer = $("#canvas-container");
+  strokeCap(SQUARE);
+  colorMode(HSB, 360, 75, 25);
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
   canvas.parent("canvas-container");
   // resize canvas is the page is resized
@@ -49,31 +53,50 @@ function setup() {
     resizeScreen();
   });
   resizeScreen();
+
+  
 }
 
-// draw() function is called repeatedly, it's the main animation loop
+// Imitate: draw() function from http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_0_01
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  //Integrate: color changing properties from http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_0_01 
+  background(0);
+  randomSeed(actRandomSeed);
+  stroke(mouseY / 2, 75, 25);
+  strokeWeight(mouseY / 500);
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  //Innovate: transforming grid circles from http://www.generative-gestaltung.de/2/sketches/?01_P/P_2_1_2_01
+  let spacing = width / (tileCount + 1); // Distance between shapes
+  
+  for (var gridY = 0; gridY < tileCount; gridY++) {
+    for (var gridX = 0; gridX < tileCount; gridX++) {
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+      var posX = width / tileCount * gridX;
+      var posY = height / tileCount * gridY;
+      var shiftX = random(-mouseX, mouseX) / 20;
+      var shiftY = random(-mouseX, mouseX) / 20;
+
+      //Multiple instances of the shape from ChatGPT
+      push(); 
+      translate(posX + shiftX, posY + shiftY);
+
+      // Draw the shape
+      let circleResolution = int(map(mouseY, 0, height, 2, 50));
+      let radius = spacing / 2; // Adjust radius to fit within grid spacing
+      let angle = TAU / circleResolution;
+
+      for (let i = 0; i <= circleResolution; i++) {
+        let x = cos(angle * i) * radius;
+        let y = sin(angle * i) * radius;
+        line(0, 0, x, y);
+      }
+
+      pop();
+    }
+  }
 }
 
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
-    // code to run when mouse is pressed
+  actRandomSeed = random(100000);
 }
