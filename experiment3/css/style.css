@@ -17,3 +17,12 @@ body {
     width: 100%;
     height: 600px;
 }
+.cycle-box {
+    display: inline-block;
+    justify-content: flex-start; /* Aligns the button to the right */
+    margin-top: 1em;
+  }
+  
+.cycle-box button {
+    font-size: 2em;
+}
