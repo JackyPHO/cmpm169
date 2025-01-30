@@ -46,18 +46,28 @@
 			</div>
 
 			<div class="minor-section">
-				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<h2>Ocean environment change based on time of the day</h2>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>	Imitate: For a generative method, I wanted to replicate an ocean with waves that would change dynamically. A little help from ChatGPT 
+					made the waves animate more smoothly. For a bonus, I added clouds that would constantly move towards the right. <a href="https://editor.p5js.org/Ghalia/sketches/0w48Z27JTf">Ocean Reference</a>
+					<a href="https://editor.p5js.org/mena-landry/sketches/D7ql4Nd3V">Cloud Reference</a><br>
+					Integrate: With this ocean setting as a starting point, I felt that a sun/moon was needed to fill the environment. I used ellipse() 
+					for just a basic circle shape for the sun/moon and learned 
+					that you can change the mouse position with the value ‘mouseX’ and function mouseClicked().
+					<a href="https://editor.p5js.org/Ghalia/sketches/0w48Z27JTf">Ellipse Reference</a>
+					<a href="https://p5js.org/reference/p5/mouseClicked/">mouseClick Reference</a><br>
+					Innovate: 
+					I wanted to give the users the ability to change day and night and see how each environment is affected. The user interactivity relies on the day and night buttons at the bottom of the canvas. Using isDay and isNight would check for certain conditions that would dynamically be changed based on what time of the day it was. In the daytime, only clouds would appear and moving the sun would change the color of the ocean. At nighttime, stars that I created on my own would appear and the waves moved vigorously. 
+					
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>Throughout the experiment, I changed a lot of my initial ideas for creating generative methods. My first idea was an ocean that would change wavelength based on the position of the moon. The example I found for ocean waves was good enough, but I did wish there were more environmental details such as splashes and tides. With the limitations of p5.js, I wasn’t even sure if realistic ocean waves would be possible. For that point, I worked with what I had and had ChatGPT help on manipulating the waves. It was just a matter of completing the settings such as adding the clouds, sun, stars, and moon. The changing cycle between day and night were relatively simple as I’ve worked with conditions where you would need to change true/false. By checking with if statements, I would then just change certain variables such as the wavelength and wave color. Overall, I’m happy with the results and my experiment should fall under Cycles in Nature and Fluid Dynamics.</p>
 			</div>
 
 		</section>
