@@ -9,6 +9,11 @@
 // In a longer project I like to put these in a separate file
 
 // Globals
+let img;
+
+function preload() {
+  img = loadImage('puppy.jpg');
+}
 
 class MyClass {
     constructor(param1, param2) {
@@ -30,26 +35,68 @@ function resizeScreen() {
 }
 
 // setup() function is called once when the program starts
-function setup() {
-  // place our canvas, making it fit our container
-  canvasContainer = $("#canvas-container");
-  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-  canvas.parent("canvas-container");
-  // resize canvas is the page is resized
 
-  // create an instance of the class
+function setup() {
+  if (!img) {
+    console.error("Image not loaded yet.");
+    return;
+  }
+
+  canvasContainer = $("#canvas-container");
+  let canvas = createCanvas(img.width, img.height);
+  canvas.parent("canvas-container");
+
   myInstance = new MyClass("VALUE1", "VALUE2");
 
-  $(window).resize(function() {
+  $(window).resize(function () {
     resizeScreen();
   });
+
   resizeScreen();
+  noLoop();
 }
 
 // draw() function is called repeatedly, it's the main animation loop
 function draw() {
+  //Imitate: https://dev.to/andyhaskell/convert-images-to-mosaics-in-p5js-2dlc
+  drawMosaic(3, color(30, 30, 30)); 
 }
 
-//Integrate: Change mouse position https://p5js.org/reference/p5/mouseClicked/
+const columnWidth = (dotRadius) => dotRadius * 3;
+
+const numberOfColumns = (dotRadius) =>
+  Math.ceil(width / columnWidth(dotRadius));
+
+function drawMosaic(dotRadius, backgroundColor) {
+  background(backgroundColor);
+  for (let i = 0; i < numberOfColumns(dotRadius); i++) {
+    offsetX = i * columnWidth(dotRadius);
+    drawColumnDots(dotRadius, offsetX);
+  }
+}
+
+function drawColumnDots(dotRadius, offsetX) {
+  // [TODO] Replace the line with a column of dots
+
+  let dotDiameter = dotRadius * 2;
+  let dotHeightWithPadding = dotDiameter + 2;
+  let numDotsInColumn = Math.floor(height / dotHeightWithPadding);
+
+  for (let i = 0; i < numDotsInColumn; i++) {
+    let centerX = Math.floor(random(
+      offsetX + dotRadius,
+      offsetX + columnWidth(dotRadius) - dotRadius,
+    ))
+
+    let centerY = i * dotHeightWithPadding + dotRadius;
+    let dotColor = img.get(centerX, centerY);
+    noStroke()
+    fill(dotColor);
+
+    ellipse(centerX, centerY, dotDiameter, dotDiameter);
+  }
+}
+
+
 function mouseClicked(){
 }
