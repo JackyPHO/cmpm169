@@ -84,7 +84,7 @@ function draw() {
   box(200, 200);
   pop();
 
-  // Check for collision
+  // Check for collision ensuring that donuts go inside the box from ChatGPT
   if (checkCollision(gravityX, gravityY, width/2 - width/2, height/2 - 50, 200)) {
     gravityY = 5000;
     if(isPlain){
@@ -111,6 +111,7 @@ function mouseClicked(){
     shapeIndex = (shapeIndex + 1) % shapes.length;
   }
 }
+//Handles key input for switch different flavors
 function keyPressed() {
   if (key === '1') {
     donutColor = color(213, 160, 107);
@@ -131,10 +132,10 @@ function keyPressed() {
     isChocolate = true;
   }
 }
-//Collision event to check if donuts go inside the box from ChatGPT
+
+//Collision event function from ChatGPT
 function checkCollision(donutX, donutY, boxX, boxY, boxSize) {
   let halfBox = boxSize / 2;
-
   return (
     donutX > boxX - halfBox && donutX < boxX + halfBox &&
     donutY > boxY - halfBox && donutY < boxY + halfBox
