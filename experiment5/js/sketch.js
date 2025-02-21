@@ -89,7 +89,7 @@ function draw() {
     gravityY = 5000;
     if(isPlain){
       //Edit innerHTML text for each donut count from https://www.w3schools.com/Js/js_htmldom_html.asp 
-      plainCount++;2
+      plainCount++;
       document.getElementById("p1").innerHTML = `Plain Donut Count: ${plainCount}`;
     }
     if(isStrawberry){

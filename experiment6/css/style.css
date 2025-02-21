@@ -14,7 +14,7 @@ body {
 }
 
 #canvas-container {
-    width: 100%;
+    width: 1500px;
     height: 600px;
 }
 .cycle-box {
