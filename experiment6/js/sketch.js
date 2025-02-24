@@ -13,7 +13,6 @@ let myFont;
 let offset = 0.0;
 let blockWall;
 let txt;
-let slider;
 let texts = ["Welcome to the Neon Sign", "Let's get started", "Add your custom text"]
 let textIndex = 0;
 let button, redButton, greenButton, blueButton;
@@ -64,7 +63,7 @@ function setup() {
   txt = createInput('');
   txt.size(500,50)
   txt.hide()
-
+D
   button = createButton('Confirm');
   button.position(700, 570);
   button.size(100,50);
