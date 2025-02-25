@@ -4,6 +4,7 @@
 
 let myChart;
 let chartData;
+let selectBubble = null;
 const circleScale = 4;
 const randomNumber = 50;
 
@@ -25,87 +26,102 @@ function setup() {
           data: [
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 80,
+              y: Math.floor(Math.random() * randomNumber),
               r: 20 * circleScale,
               label: "Computer Engineering",
+              salary: 80000,
+              check: false
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 79,
+              y: Math.floor(Math.random() * randomNumber),
               r: 19 * circleScale,
               label: "Chemical Engineering",
+              salary: 79000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 78,
+              y: Math.floor(Math.random() * randomNumber),
               r: 18 * circleScale,
               label: "Computer Science",
+              salary: 78000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 74,
+              y: Math.floor(Math.random() * randomNumber),
               r: 16 * circleScale,
               label: "Aerospace Engineering",
+              salary: 74000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 72,
+              y: Math.floor(Math.random() * randomNumber),
               r: 15 * circleScale,
               label: "Electrical Engineering",
+              salary: 72000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 71,
+              y: Math.floor(Math.random() * randomNumber),
               r: 14 * circleScale,
               label: "Industrial Engineering",
+              salary: 71000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 70,
+              y: Math.floor(Math.random() * randomNumber),
               r: 13 * circleScale,
               label: "Mechanical Engineering",
+              salary: 70000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 66,
+              y: Math.floor(Math.random() * randomNumber),
               r: 10 * circleScale,
               label: "Finance",
+              salary: 66000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 65,
+              y: Math.floor(Math.random() * randomNumber),
               r: 10 * circleScale,
               label: "Math",
+              salary: 65000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 65,
+              y: Math.floor(Math.random() * randomNumber),
               r: 10 * circleScale,
               label: "Economics",
+              salary: 65000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 65,
+              y: Math.floor(Math.random() * randomNumber),
               r: 10 * circleScale,
               label: "Civil Engineering",
+              salary: 65000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 64,
+              y: Math.floor(Math.random() * randomNumber),
               r: 9 * circleScale,
               label: "Business Analytics",
+              salary: 64000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 62,
+              y: Math.floor(Math.random() * randomNumber),
               r: 8 * circleScale,
               label: "Pharmacy",
+              salary: 62000
             },
             {
               x: Math.floor(Math.random() * randomNumber),
-              y: 62,
+              y: Math.floor(Math.random() * randomNumber),
               r: 8 * circleScale,
               label: "Physics",
+              salary: 62000
             },
           ],
           backgroundColor: function (context) {
@@ -140,7 +156,7 @@ function setup() {
               return label; // Display the major name
             },
             label: function (tooltipItem) {
-              const salary = tooltipItem.raw.y * 1000; // y value multiplied by 1000 for salary
+              const salary = tooltipItem.raw.salary; // y value multiplied by 1000 for salary
               return `Average Salary: $${salary.toLocaleString()}`;
             },
           },
@@ -187,8 +203,8 @@ function draw() {
     stroke(0);
     strokeWeight(0.1);
     textAlign(CENTER, CENTER); // Center the text within the bubble
-    textSize(10);
-    text(point.label, x, y); // Draw the label at the bubble's center
+    textSize(15);
+    text(point.label.replace(/ /g, "\n"), x, y); // Draw the label at the bubble's center
   });
 }
 
@@ -200,4 +216,5 @@ function mouseReleased() {
   canvasContainer = $("#canvas-container");
   let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
   canvas.parent("canvas-container");
+  selectedBubble = null; 
 }
